@@ -12,3 +12,4 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.incsearch = true
 
+vim.opt.list = true
