@@ -14,3 +14,6 @@ vim.opt.incsearch = true
 
 vim.opt.list = true
 vim.opt.colorcolumn = "80"
+
+vim.g.netrw_liststyle = 3
+vim.g.netrw_winsize = 25

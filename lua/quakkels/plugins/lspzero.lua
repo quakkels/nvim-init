@@ -81,6 +81,27 @@ return {
 				-- see :help lsp-zero-keybindings
 				-- to learn the available actions
 				lsp_zero.default_keymaps({buffer = bufnr})
+
+				local builtin = require('telescope.builtin')
+				local opts = {buffer = bufnr}
+
+				-- anything that returns a list goes through telescope
+				vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts)
+				vim.keymap.set('n', 'gi', builtin.lsp_implementations, opts)
+				vim.keymap.set('n', 'go', builtin.lsp_type_definitions, opts)
+				vim.keymap.set('n', 'grr', builtin.lsp_references, opts)
+				vim.keymap.set('n', 'gO', builtin.lsp_document_symbols, opts)
+
+				vim.keymap.set('n', '<leader>vrr', builtin.lsp_references, opts)
+				vim.keymap.set('n', '<leader>vws', builtin.lsp_dynamic_workspace_symbols, opts)
+				vim.keymap.set('n', '<leader>vs', builtin.lsp_document_symbols, opts)
+				vim.keymap.set('n', '<leader>vD', builtin.diagnostics, opts)
+
+				-- single actions stay on the raw lsp functions
+				vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts)
+				vim.keymap.set('n', '<leader>vca', vim.lsp.buf.code_action, opts)
+				vim.keymap.set('n', '<leader>vrn', vim.lsp.buf.rename, opts)
+				vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
 			end)
 
 			require('mason-lspconfig').setup({
