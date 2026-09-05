@@ -119,6 +119,11 @@ return {
 						local lua_opts = lsp_zero.nvim_lua_ls()
 						require('lspconfig').lua_ls.setup(lua_opts)
 					end,
+
+					-- roslyn.nvim manages the C# LSP client itself; skip the default
+					-- handler so omnisharp (if still installed via mason) doesn't
+					-- also attach and fight over the same buffers.
+					omnisharp = function() end,
 				}
 			})
 		end
